@@ -33,45 +33,6 @@ export default {
         }
     },
 }
-// beforeCreate() {
-//     console.log('antes de criar')
-// },
-// created() {
-//     console.log('criado')
-// },
-// beforeMount() {
-//     console.log('antes de montar')
-// },
-// mounted() {
-//     console.log('montado')
-// },
-// beforeUpdate() {
-//     console.log('antes de att')
-// },
-// updated() {
-//     console.log('atualizado')
-// },
-// beforeUnmount() {
-//     console.log('antes de desmontar')
-// },
-// unmounted() {
-//     console.log('desmontado')
-// },
-    // errorCaptured() {
-    //     console.log('erro')
-    // },
-    // renderTracked() {
-    //     console.log('re-renderização rastreada')
-    // },
-    // renderTriggered() {
-    //     console.log('re-renderização acionada')
-    // },
-    // activated() {
-    //     console.log('componente é ativado')
-    // },
-    // deactivated() {
-    //     console.log('desativado')
-    // }
 </script>
 
 <style scoped></style>

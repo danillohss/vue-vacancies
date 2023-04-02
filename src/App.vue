@@ -23,7 +23,6 @@ export default {
   },
   methods: {
     desmontar() {
-      console.log('asdsad')
       this.visibilidade = false;
     }
   },
