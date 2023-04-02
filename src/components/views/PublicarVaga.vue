@@ -67,18 +67,28 @@ export default {
             salario: '',
             tipo: '',
             modalidade: '',
+            dataPublicacao: ''
         }
     },
     methods: {
         salvarVaga() {
-            let vaga = {
+            let tempoDecorrido = Date.now();
+            let dataAtual = new Date(tempoDecorrido);
+            let vagas = JSON.parse(localStorage.getItem('vagas'))
+            console.log(vagas)
+
+            if (!vagas) vagas = []
+
+            vagas.push({
                 titulo: this.titulo,
                 descricao: this.descricao,
                 salario: this.salario,
                 tipo: this.tipo,
-                modalidade: this.modalidade
-            }
-            localStorage.setItem('vagas', JSON.stringify(vaga));
+                modalidade: this.modalidade,
+                publicacao: dataAtual.toLocaleDateString('pt-BR')
+            })
+            console.log(this.dataPublicacao)
+            localStorage.setItem('vagas', JSON.stringify(vagas));
         }
     },
 }

@@ -6,8 +6,8 @@
         </div>
         <div class="card-footer">
             <small class="text-muted">
-                <a href=""></a> Salário: {{ this.salario }} | Modalidade: {{ this.modalidade }} |
-                Tipo: {{ this.tipo }} | {{
+                <a href=""></a> Salário: {{ this.salario }} | Modalidade: {{ getModalidade }} |
+                Tipo: {{ getTipo }} | {{
                     this.publicacao }}
             </small>
         </div>
@@ -48,5 +48,29 @@ export default {
             required: true
         }
     },
+    computed: {
+        getModalidade() {
+            switch (this.modalidade) {
+                case '1':
+                    return 'Home Office'
+                case '2':
+                    return 'Híbrido'
+                case '3':
+                    return 'Presencial'
+                default:
+                    return 'Não informado'
+            }
+        },
+        getTipo() {
+            switch (this.tipo) {
+                case '1':
+                    return 'CLT'
+                case '2':
+                    return 'PJ'
+                default:
+                    return 'Não informado'
+            }
+        }
+    }
 }
 </script>
