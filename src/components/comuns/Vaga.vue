@@ -1,12 +1,27 @@
 <template>
     <div class="card">
-        <div class="card-header bg-dark text-white">{{ this.titulo }}</div>
+        <div class="card-header bg-dark text-white">
+            <div class="row">
+                <div class="col d-flex justify-content-between">
+                    <div>
+                        {{ this.titulo }}
+                    </div>
+                    <div>
+                        <div class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input" v-model="favoritada">
+                            <label v-if="!favoritada" class="form-check-label">Favoritar</label>
+                            <label v-else class="form-check-label">Desfavoritar</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card-body">
             <p>{{ this.descricao }}</p>
         </div>
         <div class="card-footer">
             <small class="text-muted">
-                <a href=""></a> Salário: {{ this.salario }} | Modalidade: {{ getModalidade }} |
+                <a href=""></a> Salário: {{ getSalario }} | Modalidade: {{ getModalidade }} |
                 Tipo: {{ getTipo }} | {{
                     this.publicacao }}
             </small>
@@ -18,14 +33,15 @@
 export default {
     // eslint-disable-next-line
     name: 'Vaga',
-    //props: ['titulo', 'descricao', 'salario', 'modalidade', 'tipo', 'publicacao'],
+    data() {
+        return {
+            favoritada: false,
+        }
+    },
     props: {
         titulo: {
             type: String,
             required: true,
-            validator(p) {
-                console.log(p);
-            },
         },
         descricao: {
             type: String,
@@ -46,6 +62,15 @@ export default {
         tipo: {
             type: String,
             required: true
+        }
+    },
+    watch: {
+        favoritada(valorNovo) {
+            if (valorNovo) {
+                this.emitter.emit('favoritarVaga', this.titulo)
+            } else {
+                this.emitter.emit('desfavoritarVaga', this.titulo)
+            }
         }
     },
     computed: {
@@ -70,6 +95,12 @@ export default {
                 default:
                     return 'Não informado'
             }
+        },
+        getSalario() {
+            if (this.salario === '') {
+                return 'Não informado'
+            }
+            return this.salario;
         }
     }
 }

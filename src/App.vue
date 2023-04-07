@@ -1,13 +1,14 @@
 <template>
   <div>
-    <Topo />
-    <button @click="desmontar()">desmontar</button>
-    <Conteudo v-if="visibilidade" />
+    <VagasFavoritas />
+    <Topo @navegar="componente = $event" />
+    <Conteudo v-if="visibilidade" :conteudo="componente" />
   </div>
 </template>
 
 <script>
 
+import VagasFavoritas from '@/components/comuns/VagasFavoritas.vue'
 import Conteudo from '@/components/layouts/Conteudo.vue'
 import Topo from '@/components/layouts/Topo.vue'
 
@@ -16,15 +17,11 @@ export default {
   data() {
     return {
       visibilidade: true,
+      componente: 'Home',
     }
   },
   components: {
-    Topo, Conteudo
-  },
-  methods: {
-    desmontar() {
-      this.visibilidade = false;
-    }
+    Topo, Conteudo, VagasFavoritas
   },
 }
 </script>

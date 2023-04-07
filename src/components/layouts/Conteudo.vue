@@ -1,11 +1,5 @@
 <template>
     <div>
-        <h1>{{ titulo }}</h1>
-        <button @click="atualizarComponente()">ATT</button>
-        <button @click="conteudo = 'Home'">Home</button>
-        <button @click="conteudo = 'PublicarVaga'">Publicar vaga</button>
-        <!-- <Home />
-        <PublicarVaga /> -->
         <keep-alive>
             <component :is="conteudo" />
         </keep-alive>
@@ -18,19 +12,15 @@ import PublicarVaga from '@/components/views/PublicarVaga.vue'
 export default {
     // eslint-disable-next-line
     name: 'Conteudo',
+    props: {
+        conteudo: {
+            typeof: 'string',
+            required: true
+        }
+    },
     components: {
         Home,
         PublicarVaga
-    },
-    data: () => ({
-        teste: 'O componente foi criado',
-        titulo: 'Componente Conteudo',
-        conteudo: 'Home',
-    }),
-    methods: {
-        atualizarComponente() {
-            this.titulo += '*'
-        }
     },
 }
 </script>

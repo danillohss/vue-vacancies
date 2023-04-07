@@ -50,7 +50,7 @@
         </div>
         <div class="row mt-3">
             <div class="col">
-                <button type="submit" class="btn btn-primary" @click="salvarVaga">Cadastrar</button>
+                <button type="submit" class="btn btn-primary" @click="salvarVaga(), limparForm()">Cadastrar</button>
             </div>
         </div>
     </div>
@@ -75,7 +75,6 @@ export default {
             let tempoDecorrido = Date.now();
             let dataAtual = new Date(tempoDecorrido);
             let vagas = JSON.parse(localStorage.getItem('vagas'))
-            console.log(vagas)
 
             if (!vagas) vagas = []
 
@@ -87,9 +86,17 @@ export default {
                 modalidade: this.modalidade,
                 publicacao: dataAtual.toLocaleDateString('pt-BR')
             })
-            console.log(this.dataPublicacao)
             localStorage.setItem('vagas', JSON.stringify(vagas));
+        },
+        limparForm() {
+            this.titulo = '',
+                this.descricao = '',
+                this.salario = '',
+                this.tipo = '',
+                this.modalidade = '',
+                this.dataPublicacao = ''
         }
+
     },
 }
 </script>

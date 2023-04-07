@@ -15,7 +15,7 @@
                 <Indicador titulo="Vagas abertas" indicador="100" bg="bg-dark" color="text-white" />
             </div>
             <div class="col-4">
-                <Indicador titulo="Profissionais cadastrador" indicador="225" bg="bg-dark" color="text-white" />
+                <Indicador titulo="Profissionais cadastrados" indicador="225" bg="bg-dark" color="text-white" />
             </div>
             <div class="col-4">
                 <Indicador titulo="Visitantes online" :indicador="usuariosOnline" bg="bg-light" color="text-dark" />
