@@ -1,4 +1,9 @@
 <template>
+    <Alerta v-if="!this.form">
+        <div class="alert alert-danger" role="alert">
+            Informe ao menos o título da vaga e o tipo de contratação*
+        </div>
+    </Alerta>
     <div class="container py-4">
         <div class="row">
             <div class="col">
@@ -50,16 +55,19 @@
         </div>
         <div class="row mt-3">
             <div class="col">
-                <button type="submit" class="btn btn-primary" @click="salvarVaga(), limparForm()">Cadastrar</button>
+                <button type="submit" class="btn btn-primary" @click="salvarVaga()">Cadastrar</button>
             </div>
         </div>
     </div>
 </template>
 
+
 <script>
+import Alerta from '@/components/comuns/Alerta.vue'
 export default {
     // eslint-disable-next-line
     name: 'PublicarVaga',
+    components: { Alerta },
     data() {
         return {
             titulo: '',
@@ -67,26 +75,34 @@ export default {
             salario: '',
             tipo: '',
             modalidade: '',
-            dataPublicacao: ''
+            dataPublicacao: '',
+            form: true,
         }
     },
     methods: {
         salvarVaga() {
-            let tempoDecorrido = Date.now();
-            let dataAtual = new Date(tempoDecorrido);
-            let vagas = JSON.parse(localStorage.getItem('vagas'))
+            if (this.titulo && this.tipo != '') {
+                this.form = true;
+                let tempoDecorrido = Date.now();
+                let dataAtual = new Date(tempoDecorrido);
+                let vagas = JSON.parse(localStorage.getItem('vagas'))
 
-            if (!vagas) vagas = []
+                if (!vagas) vagas = []
 
-            vagas.push({
-                titulo: this.titulo,
-                descricao: this.descricao,
-                salario: this.salario,
-                tipo: this.tipo,
-                modalidade: this.modalidade,
-                publicacao: dataAtual.toLocaleDateString('pt-BR')
-            })
-            localStorage.setItem('vagas', JSON.stringify(vagas));
+                vagas.push({
+                    titulo: this.titulo,
+                    descricao: this.descricao,
+                    salario: this.salario,
+                    tipo: this.tipo,
+                    modalidade: this.modalidade,
+                    publicacao: dataAtual.toLocaleDateString('pt-BR')
+                })
+                localStorage.setItem('vagas', JSON.stringify(vagas));
+                this.emitter.emit('alerta')
+            } else {
+                this.form = false;
+            }
+            this.limparForm();
         },
         limparForm() {
             this.titulo = '',

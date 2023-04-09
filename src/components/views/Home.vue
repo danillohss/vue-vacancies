@@ -49,6 +49,12 @@ export default {
             this.usuariosOnline = Math.floor(Math.random() * 101)
         },
     },
+    mounted() {
+        this.emitter.on('filtrarVagas', vaga => {
+            const vagas = JSON.parse(localStorage.getItem('vagas'))
+            this.vagas = vagas.filter(reg => reg.titulo.toLowerCase().includes(vaga.titulo.toLowerCase()))
+        })
+    },
 }
 </script>
 
