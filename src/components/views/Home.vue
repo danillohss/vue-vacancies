@@ -5,11 +5,7 @@
                 <PesquisarVaga />
             </div>
         </div>
-        <div v-for="(vaga, index) in vagas" :key="index" class="row mt-5">
-            <div class="col">
-                <Vaga v-bind="vaga" />
-            </div>
-        </div>
+        <ListaVagas />
         <div class="row mt-5">
             <div class="col-4">
                 <Indicador titulo="Vagas abertas" indicador="100" bg="bg-dark" color="text-white" />
@@ -26,34 +22,24 @@
 
 <script>
 import PesquisarVaga from '@/components/comuns/PesquisarVaga.vue'
+import ListaVagas from '@/components/comuns/ListaVagas.vue'
 import Indicador from '@/components/comuns/Indicador.vue'
-import Vaga from '@/components/comuns/Vaga.vue'
 export default {
     // eslint-disable-next-line
     name: 'Home',
-    components: { PesquisarVaga, Indicador, Vaga },
+    components: { PesquisarVaga, Indicador, ListaVagas },
     created() {
         setInterval(this.getUsuariosOnline, 1000);
     },
     data() {
         return {
             usuariosOnline: 0,
-            vagas: []
         }
-    },
-    activated() {
-        this.vagas = JSON.parse(localStorage.getItem('vagas'))
     },
     methods: {
         getUsuariosOnline() {
             this.usuariosOnline = Math.floor(Math.random() * 101)
         },
-    },
-    mounted() {
-        this.emitter.on('filtrarVagas', vaga => {
-            const vagas = JSON.parse(localStorage.getItem('vagas'))
-            this.vagas = vagas.filter(reg => reg.titulo.toLowerCase().includes(vaga.titulo.toLowerCase()))
-        })
     },
 }
 </script>

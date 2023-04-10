@@ -1,5 +1,9 @@
 <template>
-    <slot></slot>
+    <slot>
+        <div class="alert alert-success" role="alert">
+            Operação realizada!
+        </div>
+    </slot>
 </template>
 
 <script>
