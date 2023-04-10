@@ -1,12 +1,12 @@
 <template>
     <div class="h-100 p-5 bg-light border rounded-3">
         <h2>Pesquisar Vagas</h2>
+        <hr>
         <div class="row">
         <div class="col">
             <div class="form-group">
-            <label>Título da vaga</label>
-            <input type="text" class="form-control" placeholder="Pesquise por palavras chaves, por exemplo 'PHP', 'Pleno', 'Analista'" v-model="titulo">
-            <small class="form-text text-muted">Informe palavras que estejam relacionadas com o título da vaga que você procura</small>
+            <input type="text" class="form-control" placeholder="Pesquisar..." v-model="titulo">
+            <hr>
             </div>
         </div>
         </div>
