@@ -8,13 +8,13 @@
         <ListaVagas />
         <div class="row mt-5">
             <div class="col-4">
-                <Indicador titulo="Vagas abertas" indicador="100" bg="bg-dark" color="text-white" />
+                <Indicador titulo="Vagas disponíveis" :indicador="indicador" bg="bg-dark" color="text-white" />
             </div>
             <div class="col-4">
                 <Indicador titulo="Profissionais cadastrados" indicador="225" bg="bg-dark" color="text-white" />
             </div>
             <div class="col-4">
-                <Indicador titulo="Visitantes online" :indicador="usuariosOnline" bg="bg-light" color="text-dark" />
+                <Indicador titulo="Visitantes online" :indicador="usuariosOnline" bg="bg-dark" color="text-white" />
             </div>
         </div>
     </div>
@@ -30,9 +30,11 @@ export default {
     components: { PesquisarVaga, Indicador, ListaVagas },
     created() {
         setInterval(this.getUsuariosOnline, 1000);
+        this.indicador = JSON.parse(localStorage.getItem('vagas')).length
     },
     data() {
         return {
+            indicador: null,
             usuariosOnline: 0,
         }
     },
