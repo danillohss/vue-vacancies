@@ -1,8 +1,8 @@
 <template>
     <slot>
-        <div v-for="(vaga, index) in vagas" :key="index" class="row mt-5">
+        <div v-for="(vaga, id) in vagas" :key="id" class="row mt-5">
             <div class="col">
-                <Vaga v-bind="vaga" />
+                <Vaga v-bind="vaga"/>
             </div>
         </div>
     </slot>

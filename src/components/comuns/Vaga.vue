@@ -21,10 +21,28 @@
         </div>
         <div class="card-footer">
             <small class="text-muted">
-                <a href=""></a> Salário: {{ getSalario }} | Modalidade: {{ getModalidade }} |
-                Tipo: {{ getTipo }} | {{
+                Salário: {{ getSalario }} | Modalidade: {{ getModalidade }} |
+                Tipo: {{ getTipo }} | Data da publicação: {{
                     this.publicacao }}
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Deletar vaga</button>
+                </div>
             </small>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Deseja realmente excluir a vaga selecionada ?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" @click="deletarVaga()">Excluir</button>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -36,6 +54,12 @@ export default {
     data() {
         return {
             favoritada: false,
+        }
+    },
+    methods: {
+        deletarVaga() {
+            const arrayVagas = JSON.parse(localStorage.getItem('vagas'));
+            console.log(arrayVagas)
         }
     },
     props: {

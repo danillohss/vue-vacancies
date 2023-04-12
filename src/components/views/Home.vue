@@ -29,13 +29,15 @@ export default {
     name: 'Home',
     components: { PesquisarVaga, Indicador, ListaVagas },
     created() {
-        setInterval(this.getUsuariosOnline, 1000);
+        setInterval(this.getUsuariosOnline, 10000);
+    },
+    activated() {
         this.indicador = JSON.parse(localStorage.getItem('vagas')).length
     },
     data() {
         return {
-            indicador: null,
-            usuariosOnline: 0,
+            indicador: 0,
+            usuariosOnline: 22,
         }
     },
     methods: {
