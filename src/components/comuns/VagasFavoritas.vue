@@ -30,7 +30,6 @@ export default {
         this.emitter.on('favoritarVaga', (titulo) => {
             this.vagas.push(titulo)
         })
-
         this.emitter.on('desfavoritarVaga', (titulo) => {
             let indiceArray = this.vagas.indexOf(titulo)
             if (indiceArray !== -1) {

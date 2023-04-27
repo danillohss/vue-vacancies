@@ -32,7 +32,7 @@ export default {
         setInterval(this.getUsuariosOnline, 10000);
     },
     activated() {
-        this.indicador = JSON.parse(localStorage.getItem('vagas')).length
+            this.indicador = JSON.parse(localStorage.getItem('vagas')).length
     },
     data() {
         return {
