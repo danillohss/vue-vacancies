@@ -35,7 +35,12 @@
           <div class="input-group-prepend">
             <span class="input-group-text">R$</span>
           </div>
-          <input type="text" class="form-control" v-model="salario" />
+          <input
+            type="text"
+            class="form-control"
+            v-model="salario"
+            v-maska="'#,###.##'"
+          />
         </div>
         <div class="form-text">Informe a Remuneração</div>
       </div>
