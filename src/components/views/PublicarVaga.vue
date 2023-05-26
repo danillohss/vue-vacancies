@@ -1,6 +1,7 @@
 <template>
-  <Alerta v-if="!this.form">
-    <div class="alert alert-danger" role="alert">
+  <Topo @navegar="componente = $event" />
+  <Alerta v-if="this.alerta">
+    <div v-if="!this.form" class="alert alert-danger" role="alert">
       Informe ao menos o título da vaga e o tipo de contratação*
     </div>
   </Alerta>
@@ -74,13 +75,15 @@
 
 
 <script>
+import Topo from "@/components/layouts/Topo.vue";
 import Alerta from "@/components/comuns/Alerta.vue";
 export default {
   // eslint-disable-next-line
   name: "PublicarVaga",
-  components: { Alerta },
+  components: { Alerta, Topo },
   data() {
     return {
+      alerta: false,
       id: -1,
       titulo: "",
       descricao: "",
@@ -94,6 +97,7 @@ export default {
   methods: {
     salvarVaga() {
       if (this.titulo && this.tipo != "") {
+        this.alerta = true;
         this.id++;
         this.form = true;
         let tempoDecorrido = Date.now();
@@ -115,8 +119,9 @@ export default {
         this.emitter.emit("alerta");
       } else {
         this.form = false;
+        this.alerta = true;
       }
-      console.log(this.id);
+      setTimeout(() => this.alerta = false, 3500)
     },
   },
   activated() {
